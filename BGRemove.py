@@ -31,13 +31,13 @@ else:
     else:
         response = requests.post(
             'https://api.remove.bg/v1.0/removebg',
-            files={'image_file': open('2zg7jkerkkjb1.jpg', 'rb')},
+            files={'image_file': open(image_path, 'rb')},
             data={'size': 'auto'},
             headers={'X-Api-Key': api_key},
         )
 
         if response.status_code == requests.codes.ok:
-            with open('no-bg.png', 'wb') as out:
+            with open(f'{image_path.split(".")[0]}-no-bg.png', 'wb') as out:
                 out.write(response.content)
         else:
             print("Error:", response.status_code, response.text)
